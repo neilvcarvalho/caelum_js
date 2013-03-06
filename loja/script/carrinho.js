@@ -1,24 +1,39 @@
 var carrinho = document.getElementById("carrinho");
-var inputs = carrinho.getElementsByTagName("input");
+var inputs   = carrinho.getElementsByTagName("input");
+var a        = document.createElement("a");
+var div      = document.getElementById('principal');
+var ul       = div.firstElementChild;
 
 for (var i = inputs.length - 1; i >= 0; i--) {
 	inputs[i].addEventListener("keyup", function (event) {
-		var qnt = this.value;
-		var li  = this.parentNode.parentNode.parentNode;
-
+		var qnt      = parseInt(this.value);
+		var li       = this.parentNode.parentNode.parentNode;
 		var spanUnit = li.getElementsByTagName('span')[0];
 		var spanTot  = li.getElementsByTagName('span')[1];
 
-		spanTot.innerHTML = numberParaReal(qnt * realParaNumber(spanUnit.innerHTML));
-		// console.log(spanUnit.innerHTML);
+		if (qnt && ehNumero(qnt)) {
+			spanTot.textContent = numberParaReal(qnt * realParaNumber(spanUnit.textContent));
+		} else {
+			spanTot.textContent = numberParaReal(0);
+		}
 	});
 };
 
-var	produtos = carrinho.getElementsByTagName('li')
-for (var i = produtos.length - 1; i >= 0; i--) {
-	var produto = produtos[i];
-	produto.getElementsByTagName('a')[0].addEventListener('click', function (event) {
-		produto.parentNode.removeChild(produto);
-		event.preventDefault();
-	});
-};
+a.href        = '#';
+a.id          = 'linkaviso';
+a.textContent = 'Esconder aviso';
+
+div.insertBefore(a, ul);
+
+a.addEventListener('click', function(event) {
+	var ul = this.nextElementSibling;
+	if (ul.style.display !== 'none') {
+		ul.style.display = 'none';
+		this.textContent = 'Exibir aviso';
+	} else {
+		ul.style.display = 'block';
+		this.textContent = 'Esconder aviso';
+	}
+
+	event.preventDefault();
+});
