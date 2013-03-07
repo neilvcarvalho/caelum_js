@@ -19,9 +19,13 @@ for (var i = inputs.length - 1; i >= 0; i--) {
 	});
 };
 
+
+var textoInicial = 'Esconder aviso';
+var textoFinal   = 'Exibir aviso';
+
 a.href        = '#';
 a.id          = 'linkaviso';
-a.textContent = 'Esconder aviso';
+a.textContent = textoInicial;
 
 div.insertBefore(a, ul);
 
@@ -29,11 +33,19 @@ a.addEventListener('click', function(event) {
 	var ul = this.nextElementSibling;
 	if (ul.style.display !== 'none') {
 		ul.style.display = 'none';
-		this.textContent = 'Exibir aviso';
+		this.textContent = textoFinal;
 	} else {
 		ul.style.display = 'block';
-		this.textContent = 'Esconder aviso';
+		this.textContent = textoInicial;
 	}
 
 	event.preventDefault();
 });
+
+function Item (li) {
+	var spans  = li.getElementsByTagName('span');
+	this.unit  = realParaNumber(spans[0].textContent);
+	var input  = li.getElementsByTagName('input')[0];
+	this.qnt   = parseInt(input.value, 10);
+	this.total = this.unit * this.qnt;
+}

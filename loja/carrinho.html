@@ -1,16 +1,24 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
   <head>
     <title>Mirror Fashion</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <link href="css/estilos.css" rel="stylesheet" type="text/css" media="screen" />
+    <script type="text/javascript" src="script/modernizr.custom.js"></script>
+    <script type="text/javascript">
+      // Modernizr.load({
+      //   test: Modernizr.localstorage,
+      //   yep: 'script/local.js',
+      //   nope: 'script/localstorage-polyfill.js'
+      // });
+    </script>
   </head>
   <body>
 
     <div id="cabecalho">
       <div class="conteudo">
-				<p>Bem-vindo!<p>
+        <p>Bem-vindo!<p>
         <h1>Mirror Fashion</h1>
 
         <ul id="menu_topo">
@@ -56,14 +64,14 @@
 
     <div id="principal" class="conteudo">
 
-			<div>
-				<!-- <a id="linkaviso" href="#">Esconder aviso</a> -->
-				<ul>
- 					<li>Todas as bolsas nacionais com 30% de desconto</li>
-					<li>Casacos importados com 15% de desconto</li>
-					<li>Cintos com 10% de desconto</li>
-				<ul>				
-			</div>
+      <div>
+        <!-- <a id="linkaviso" href="#">Esconder aviso</a> -->
+        <ul>
+          <li>Todas as bolsas nacionais com 30% de desconto</li>
+          <li>Casacos importados com 15% de desconto</li>
+          <li>Cintos com 10% de desconto</li>
+        <ul>        
+      </div>
 
 
       <h2 id="titulo_carrinho">Seu carrinho de compras.</h2>
@@ -133,9 +141,9 @@
         <p class="resultado_cep"></p>
       </div>
 
-			<div id="tweets" class="conteudo">
-				<ul></ul>
-			</div>
+      <div id="tweets" class="conteudo">
+        <ul></ul>
+      </div>
     </div><!-- fim do conteudo principal -->
 
     <div id="rodape">
@@ -168,5 +176,6 @@
     <script type="text/javascript" src="script/input-numerico.js"></script>
     <script type="text/javascript" src="script/moeda.js"></script>
     <script type="text/javascript" src="script/carrinho.js"></script>
+    <script type="text/javascript" src="script/local.js"></script>
   </body>
 </html>
