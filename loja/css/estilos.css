@@ -175,6 +175,10 @@ body {
   padding: 15px;
 }
 
+#carrinho li form a {
+  display: none;
+}
+
 #carrinho li:last-child {
   border-bottom: 1px dotted #CCC;  
 }

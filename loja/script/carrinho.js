@@ -1,23 +1,6 @@
-var carrinho = document.getElementById("carrinho");
-var inputs   = carrinho.getElementsByTagName("input");
 var a        = document.createElement("a");
 var div      = document.getElementById('principal');
 var ul       = div.firstElementChild;
-
-for (var i = inputs.length - 1; i >= 0; i--) {
-	inputs[i].addEventListener("keyup", function (event) {
-		var qnt      = parseInt(this.value);
-		var li       = this.parentNode.parentNode.parentNode;
-		var spanUnit = li.getElementsByTagName('span')[0];
-		var spanTot  = li.getElementsByTagName('span')[1];
-
-		if (qnt && ehNumero(qnt)) {
-			spanTot.textContent = numberParaReal(qnt * realParaNumber(spanUnit.textContent));
-		} else {
-			spanTot.textContent = numberParaReal(0);
-		}
-	});
-};
 
 
 var textoInicial = 'Esconder aviso';
@@ -42,10 +25,23 @@ a.addEventListener('click', function(event) {
 	event.preventDefault();
 });
 
-function Item (li) {
-	var spans  = li.getElementsByTagName('span');
-	this.unit  = realParaNumber(spans[0].textContent);
-	var input  = li.getElementsByTagName('input')[0];
-	this.qnt   = parseInt(input.value, 10);
-	this.total = this.unit * this.qnt;
-}
+$('#carrinho li span[id$=valor_unit]').each(function () {
+	var $spanValorUnitario = $(this);
+
+	var valorUnitario = realParaNumber($spanValorUnitario.text());
+	var $li = $spanValorUnitario.closest('li');
+	$li.data('valor', valorUnitario);
+});
+
+$('#carrinho').on('keyup', 'input[type=text]', function (event) {
+	var $input             = $(this);
+	var $li                = $(this).closest('li');
+	var $spanValorTotal    = $li.find('span[id$=_valor_total]');
+
+	var quantidade = parseInt($input.val(), 10);
+	if (!quantidade) quantidade = 0
+	var valorUnitario = $li.data('valor');
+	var total         = quantidade * valorUnitario;
+
+	$spanValorTotal.text(numberParaReal(total));
+});
